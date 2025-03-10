@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: project
+  labels:
+    app: frontend
+    tier: web
+    project: project
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  selector:     # this is to take the reference from above given labels
+    matchLabels:
+      app: frontend
+      tier: web
+      project: project
+  template:   #### this is the pod refernce name from which we have to take the refernce
+    metadata:
+      labels:
+        app: frontend
+        tier: web
+        project: project
+    spec:
+      containers:
+      - name: nginx
+        image: joindevops/mysql:1.0.0
+        ports:
+        - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector: # labels will used here for selecting the pod
+    app: frontend
+    tier: web
+    project: project
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
