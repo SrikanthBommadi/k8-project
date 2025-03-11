@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: joindevops/mysql:1.0.0   ###nginx:1.14.2  ### srikanth9959/deployment:1.0.0
+        image: lakshman143/mysql:1.0.0   ###nginx:1.14.2  ### srikanth9959/deployment:1.0.0
 ---
 kind: Service
 apiVersion: v1
