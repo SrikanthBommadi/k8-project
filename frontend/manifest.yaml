@@ -31,7 +31,8 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx
+  name: frontend
+  namespace: project
 spec:
   type: LoadBalancer
   selector: # labels will used here for selecting the pod
